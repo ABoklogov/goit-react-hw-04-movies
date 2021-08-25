@@ -1,0 +1,21 @@
+.Navigation {
+  padding-left: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #000;
+  background-color: rgb(160, 175, 171);
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+}
+.navItem {
+  text-decoration: none;
+  color: rgb(52, 54, 60);
+}
+.navItem:not(:last-child) {
+  margin-right: 10px;
+}
+
+.navActive {
+  color: rgb(65, 127, 194);
+}
