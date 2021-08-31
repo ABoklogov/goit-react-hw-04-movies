@@ -1,9 +1,9 @@
 import { Route, Switch } from 'react-router-dom';
 import Container from '../Container';
 import Navigation from '../Navigation';
-import HomeView from '../../views/HomeView';
-import MoviesView from '../../views/MoviesView';
-// import MovieDetailsView from '../../views/MovieDetailsView';
+import HomePage from '../../views/HomePage';
+import MoviesPage from '../../views/MoviesPage';
+import MovieDetailsPage from '../../views/MovieDetailsPage';
 import NotFoundView from '../../views/NotFoundView';
 
 function App() {
@@ -13,16 +13,16 @@ function App() {
 
       <Switch>
         <Route exact path="/">
-          <HomeView />
+          <HomePage />
         </Route>
 
-        <Route path="/movies">
-          <MoviesView />
+        <Route exact path="/movies">
+          <MoviesPage />
         </Route>
 
-        {/* <Route path="/movies/:movieId">
-        <MovieDetailsView />
-      </Route> */}
+        <Route path="/movies/:movieId">
+          <MovieDetailsPage />
+        </Route>
 
         <Route>
           <NotFoundView />
