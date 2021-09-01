@@ -24,3 +24,9 @@ export const fatchDetailsMovie = id => {
   return fetchWithErrorHandling(`
 ${BASE_URL}movie/${id}?api_key=${API_KEY}&language=en-US`);
 };
+
+export const fatchMovieActors = id => {
+  return fetchWithErrorHandling(
+    `${BASE_URL}movie/${id}/credits?api_key=${API_KEY}&language=en-US`,
+  );
+};

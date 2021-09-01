@@ -1,0 +1,28 @@
+.boxDetailsMovie {
+  display: flex;
+}
+.boxDetailsMovie h1 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: rgb(34, 32, 32);
+}
+.boxDetailsMovie p {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: rgb(104, 100, 100);
+}
+.boxDetailsMovie span {
+  color: rgb(34, 32, 32);
+  font-size: 20px;
+}
+
+.boxInfo {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #000;
+}
+
+.detailsMovieImage {
+  margin-right: 10px;
+}
