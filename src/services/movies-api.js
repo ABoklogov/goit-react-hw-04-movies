@@ -30,3 +30,9 @@ export const fatchMovieActors = id => {
     `${BASE_URL}movie/${id}/credits?api_key=${API_KEY}&language=en-US`,
   );
 };
+
+export const fatchMovieReviews = id => {
+  return fetchWithErrorHandling(
+    `${BASE_URL}movie/${id}/reviews?api_key=${API_KEY}&language=en-US&page=1`,
+  );
+};
