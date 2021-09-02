@@ -1,10 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as moviesAPI from '../services/movies-api';
 import MoviesList from '../components/MoviesList';
+import MoviesFormSubmit from '../components/MoviesFormSubmit';
+import ErrorMessage from '../components/ErrorMessage';
+
+const Status = {
+  IDLE: 'idle',
+  PENDING: 'pending',
+  RESOLVED: 'resolved',
+  REJECTED: 'rejected',
+};
 
 const MoviesView = () => {
   const [movie, setMovie] = useState('');
   const [movies, setMovies] = useState([]);
+  const [status, setStatus] = useState(Status.IDLE);
+  const [error, setError] = useState(null);
+
+  // useEffect(() => {
+  //   console.log(movies);
+  // }, [movies]);
 
   const handleMovieChenge = e => {
     const { value } = e.target;
@@ -13,22 +28,36 @@ const MoviesView = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    moviesAPI.fatchOnRquestMovies(movie).then(data => setMovies(data.results));
-    setMovie('');
+    moviesAPI
+      .fatchOnRquestMovies(movie)
+      .then(data => {
+        if (data.results.length !== 0) {
+          setMovies(data.results);
+          setMovie('');
+          setStatus(Status.RESOLVED);
+          console.log(data.results);
+          return;
+        }
+        return Promise.reject(new Error(`this movie was not found`));
+      })
+      .catch(error => {
+        setError(error);
+        setMovie('');
+        setStatus(Status.REJECTED);
+      });
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={movie}
-          onChange={handleMovieChenge}
-          required
-        />
-        <button>Search</button>
-      </form>
-      {movies && <MoviesList movies={movies} />}
+      <MoviesFormSubmit
+        submit={handleSubmit}
+        handleChenge={handleMovieChenge}
+        movie={movie}
+      />
+
+      {status === 'resolved' && <MoviesList movies={movies} />}
+
+      {status === 'rejected' && <ErrorMessage error={error.message} />}
     </>
   );
 };

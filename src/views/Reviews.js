@@ -1,5 +1,5 @@
-import * as moviesAPI from '../services/movies-api';
 import { useState, useEffect } from 'react';
+import * as moviesAPI from '../services/movies-api';
 import ReviewsList from '../components/ReviewsList';
 
 const Reviews = ({ id }) => {

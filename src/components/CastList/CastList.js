@@ -1,15 +1,23 @@
+import defaultImg from '../../img/defaultImage.jpg';
+import s from './CastList.module.css';
+
 const CastList = ({ cast }) => {
   return (
-    <ul>
+    <ul className={s.castList}>
       {cast.map(el => (
-        <li key={el.cast_id}>
+        <li key={el.cast_id} className={s.castItem}>
           <img
-            src={`https://image.tmdb.org/t/p/w300/${el.profile_path}`}
+            src={
+              el.profile_path !== null
+                ? `https://image.tmdb.org/t/p/w300/${el.profile_path}`
+                : defaultImg
+            }
             alt={el.original_name}
             width={100}
+            className={s.castImage}
           />
-          <p>{el.original_name}</p>
-          <p>Character: {el.character}</p>
+          <p className={s.castName}>{el.original_name}</p>
+          <p className={s.castCharacter}>Character: {el.character}</p>
         </li>
       ))}
     </ul>

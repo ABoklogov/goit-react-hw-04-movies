@@ -25,7 +25,8 @@ function App() {
         </Route>
 
         <Route>
-          <NotFoundView />
+          <HomePage />
+          {/* <NotFoundView /> */}
         </Route>
       </Switch>
     </Container>
