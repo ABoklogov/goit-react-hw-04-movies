@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import * as moviesAPI from '../services/movies-api';
 import MoviesList from '../components/MoviesList';
 import MoviesFormSubmit from '../components/MoviesFormSubmit';
@@ -17,10 +17,6 @@ const MoviesView = () => {
   const [status, setStatus] = useState(Status.IDLE);
   const [error, setError] = useState(null);
 
-  // useEffect(() => {
-  //   console.log(movies);
-  // }, [movies]);
-
   const handleMovieChenge = e => {
     const { value } = e.target;
     setMovie(value);
@@ -35,7 +31,7 @@ const MoviesView = () => {
           setMovies(data.results);
           setMovie('');
           setStatus(Status.RESOLVED);
-          console.log(data.results);
+
           return;
         }
         return Promise.reject(new Error(`this movie was not found`));
