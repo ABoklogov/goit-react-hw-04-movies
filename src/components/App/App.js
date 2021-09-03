@@ -1,32 +1,43 @@
+import { lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import s from './App.module.css';
 import Container from '../Container';
 import Navigation from '../Navigation';
-import HomePage from '../../views/HomePage';
-import MoviesPage from '../../views/MoviesPage';
-import MovieDetailsPage from '../../views/MovieDetailsPage';
+
+const HomePage = lazy(() => import('../../views/HomePage.js'));
+const MoviesPage = lazy(() => import('../../views/MoviesPage.js'));
+const MovieDetailsPage = lazy(() => import('../../views/MovieDetailsPage.js'));
 
 function App() {
   return (
     <Container>
       <Navigation />
 
-      <Switch>
-        <Route exact path="/">
-          <HomePage />
-        </Route>
+      <Suspense
+        fallback={
+          <Loader className={s.Loader} type="TailSpin" color="#00BFFF" />
+        }
+      >
+        <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
 
-        <Route path="/movies/:movieId">
-          <MovieDetailsPage />
-        </Route>
+          <Route path="/movies/:movieId">
+            <MovieDetailsPage />
+          </Route>
 
-        <Route exact path="/movies">
-          <MoviesPage />
-        </Route>
+          <Route exact path="/movies">
+            <MoviesPage />
+          </Route>
 
-        <Route>
-          <HomePage />
-        </Route>
-      </Switch>
+          <Route>
+            <HomePage />
+          </Route>
+        </Switch>
+      </Suspense>
     </Container>
   );
 }

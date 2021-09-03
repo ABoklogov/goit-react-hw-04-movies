@@ -1,3 +1,4 @@
+import noImage from '../../img/noImage.jpeg';
 import s from './MovieDetails.module.css';
 
 const MovieDetails = ({ movie }) => {
@@ -5,7 +6,11 @@ const MovieDetails = ({ movie }) => {
     <div className={s.boxDetailsMovie}>
       <img
         className={s.detailsMovieImage}
-        src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+        src={
+          movie.poster_path !== null
+            ? `https://image.tmdb.org/t/p/w300/${movie.poster_path}`
+            : noImage
+        }
         alt={movie.title}
         width={200}
       />
