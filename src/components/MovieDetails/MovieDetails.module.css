@@ -1,5 +1,6 @@
 .boxDetailsMovie {
   display: flex;
+  padding-left: 10px;
 }
 .boxDetailsMovie h1 {
   margin-top: 10px;

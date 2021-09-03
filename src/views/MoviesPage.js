@@ -4,6 +4,7 @@ import * as moviesAPI from '../services/movies-api';
 import MoviesList from '../components/MoviesList';
 import MoviesFormSubmit from '../components/MoviesFormSubmit';
 import ErrorMessage from '../components/ErrorMessage';
+import Spiner from '../components/Spiner';
 
 const Status = {
   IDLE: 'idle',
@@ -31,6 +32,8 @@ const MoviesPage = () => {
 
   useEffect(() => {
     if (nameOrder !== null) {
+      setStatus(Status.PENDING);
+
       moviesAPI
         .fatchOnRquestMovies(nameOrder)
         .then(data => {
@@ -52,6 +55,8 @@ const MoviesPage = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    setStatus(Status.PENDING);
+
     moviesAPI
       .fatchOnRquestMovies(movie)
       .then(data => {
@@ -79,6 +84,8 @@ const MoviesPage = () => {
         handleChenge={handleMovieChenge}
         movie={movie}
       />
+
+      {status === 'pending' && <Spiner />}
 
       {status === 'resolved' && <MoviesList movies={movies} />}
 

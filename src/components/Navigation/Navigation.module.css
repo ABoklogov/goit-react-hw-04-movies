@@ -12,6 +12,10 @@
   text-decoration: none;
   color: rgb(52, 54, 60);
 }
+.navItem:hover {
+  text-decoration: underline;
+  color: rgb(65, 127, 194);
+}
 .navItem:not(:last-child) {
   margin-right: 10px;
 }

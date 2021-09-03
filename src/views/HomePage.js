@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import * as moviesAPI from '../services/movies-api';
 import MoviesList from '../components/MoviesList';
 
