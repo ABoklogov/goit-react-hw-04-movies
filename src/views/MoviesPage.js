@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import * as moviesAPI from '../services/movies-api';
 import MoviesList from '../components/MoviesList';
 import MoviesFormSubmit from '../components/MoviesFormSubmit';
@@ -11,11 +12,38 @@ const Status = {
   REJECTED: 'rejected',
 };
 
-const MoviesView = () => {
+const MoviesPage = () => {
   const [movie, setMovie] = useState('');
   const [movies, setMovies] = useState([]);
   const [status, setStatus] = useState(Status.IDLE);
   const [error, setError] = useState(null);
+
+  const history = useHistory();
+  const location = useLocation();
+  const nameOrder = new URLSearchParams(location.search).get('query');
+
+  const onAddressBarWrite = order => {
+    history.push({
+      ...location,
+      search: `query=${order}`,
+    });
+  };
+
+  useEffect(() => {
+    if (nameOrder !== null) {
+      moviesAPI
+        .fatchOnRquestMovies(nameOrder)
+        .then(data => {
+          setMovies(data.results);
+          setStatus(Status.RESOLVED);
+          return;
+        })
+        .catch(error => {
+          setError(error);
+          setStatus(Status.REJECTED);
+        });
+    }
+  }, [nameOrder]);
 
   const handleMovieChenge = e => {
     const { value } = e.target;
@@ -30,6 +58,7 @@ const MoviesView = () => {
         if (data.results.length !== 0) {
           setMovies(data.results);
           setMovie('');
+          onAddressBarWrite(movie);
           setStatus(Status.RESOLVED);
 
           return;
@@ -58,4 +87,4 @@ const MoviesView = () => {
   );
 };
 
-export default MoviesView;
+export default MoviesPage;
