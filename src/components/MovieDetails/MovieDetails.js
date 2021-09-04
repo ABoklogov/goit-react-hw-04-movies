@@ -1,5 +1,6 @@
 import noImage from '../../img/noImage.jpeg';
 import s from './MovieDetails.module.css';
+import PropTypes from 'prop-types';
 
 const MovieDetails = ({ movie }) => {
   return (
@@ -30,4 +31,7 @@ const MovieDetails = ({ movie }) => {
   );
 };
 
+MovieDetails.protoType = {
+  movie: PropTypes.arrayOf(PropTypes.object),
+};
 export default MovieDetails;

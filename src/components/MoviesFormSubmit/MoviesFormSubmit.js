@@ -1,4 +1,5 @@
 import s from './MoviesFormSubmit.module.css';
+import PropTypes from 'prop-types';
 
 const MoviesFormSubmit = ({ submit, handleChenge, movie }) => {
   return (
@@ -16,4 +17,9 @@ const MoviesFormSubmit = ({ submit, handleChenge, movie }) => {
   );
 };
 
+MoviesFormSubmit.propTypes = {
+  submit: PropTypes.func.isRequired,
+  handleChenge: PropTypes.func.isRequired,
+  movie: PropTypes.string,
+};
 export default MoviesFormSubmit;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import s from './Button.module.css';
 
 const Button = ({ onGoBack }) => {
@@ -8,4 +9,7 @@ const Button = ({ onGoBack }) => {
   );
 };
 
+Button.propTypes = {
+  onGoBack: PropTypes.func.isRequired,
+};
 export default Button;

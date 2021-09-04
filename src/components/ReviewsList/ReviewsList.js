@@ -1,4 +1,5 @@
 import s from './ReviewsList.module.css';
+import PropTypes from 'prop-types';
 
 const ReviewsList = ({ reviews }) => {
   return (
@@ -20,4 +21,7 @@ const ReviewsList = ({ reviews }) => {
   );
 };
 
+ReviewsList.propTypes = {
+  reviews: PropTypes.object,
+};
 export default ReviewsList;

@@ -1,5 +1,6 @@
 import defaultImg from '../../img/defaultImage.jpg';
 import s from './CastList.module.css';
+import PropTypes from 'prop-types';
 
 const CastList = ({ cast }) => {
   return (
@@ -24,4 +25,7 @@ const CastList = ({ cast }) => {
   );
 };
 
+CastList.propTypes = {
+  cast: PropTypes.arrayOf(PropTypes.object),
+};
 export default CastList;
