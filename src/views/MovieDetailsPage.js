@@ -7,6 +7,7 @@ import {
   useHistory,
 } from 'react-router-dom';
 import { useEffect, useState, lazy, Suspense } from 'react';
+import s from './MovieDetailsPage.module.css';
 import * as moviesAPI from '../services/movies-api';
 import MovieDetails from '../components/MovieDetails';
 import AdditionalMovieInfo from '../components/AdditionalMovieInfo';
@@ -42,7 +43,9 @@ const MovieDetailsPage = () => {
 
   return (
     <>
-      <Button onGoBack={onGoBack} />
+      <div className={s.buttonBox}>
+        <Button onGoBack={onGoBack} />
+      </div>
 
       {(movie && <MovieDetails movie={movie} />) || (
         <ErrorMessage error={error} />

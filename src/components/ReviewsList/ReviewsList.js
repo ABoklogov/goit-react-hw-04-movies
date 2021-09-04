@@ -8,11 +8,11 @@ const ReviewsList = ({ reviews }) => {
         <p className={s.noReviewText}>no reviews</p>
       ) : (
         <ul>
-          {reviews.results.map(review => (
-            <li key={review.id}>
-              <p className={s.reviewName}>{review.author}</p>
-              <p>{review.content}</p>
-              <p className={s.reviewDate}>{review.created_at.slice(0, 10)}</p>
+          {reviews.results.map(({ id, author, content, created_at }) => (
+            <li key={id}>
+              <p className={s.reviewName}>{author}</p>
+              <p>{content}</p>
+              <p className={s.reviewDate}>{created_at.slice(0, 10)}</p>
             </li>
           ))}
         </ul>
