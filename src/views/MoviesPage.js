@@ -30,6 +30,13 @@ const MoviesPage = () => {
     });
   };
 
+  // useEffect(() => {
+  //   effect;
+  // }, []);
+
+  // console.log(location);
+  // console.log(nameOrder);
+
   useEffect(() => {
     if (nameOrder !== null) {
       setStatus(Status.PENDING);

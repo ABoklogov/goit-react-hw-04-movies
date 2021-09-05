@@ -2,6 +2,7 @@
   background-color: rgb(160, 175, 171);
   border-radius: 5px;
   border: 1px solid rgb(160, 175, 171);
+  height: 25px;
 }
 .Button:hover {
   background-color: rgb(65, 127, 194);

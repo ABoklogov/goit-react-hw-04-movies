@@ -17,4 +17,10 @@
   background-color: rgb(160, 175, 171);
   border-radius: 5px;
   width: 80px;
+  border: 1px solid rgb(160, 175, 171);
+}
+
+.buttonMovie:hover {
+  background-color: rgb(65, 127, 194);
+  border-color: rgb(65, 127, 194);
 }
