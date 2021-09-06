@@ -38,13 +38,13 @@ const MovieDetailsPage = () => {
   }, [movieId]);
 
   const onGoBack = () => {
-    if (location?.state?.from?.pathname === `/movies/${movieId}`) {
-      history.push(location?.state?.from?.state?.from ?? '/movies');
-
+    const backLocation = location?.state?.from;
+    if (backLocation?.pathname === `/movies/${movieId}`) {
+      history.push(backLocation?.state?.from);
       return;
     }
 
-    history.push(location?.state?.from ?? '/');
+    history.push(backLocation ?? '/');
   };
 
   return (
