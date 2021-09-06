@@ -39,7 +39,7 @@ const MovieDetailsPage = () => {
 
   const onGoBack = () => {
     if (location?.state?.from?.pathname === `/movies/${movieId}`) {
-      history.push('/movies');
+      history.push(location?.state?.from?.state?.from ?? '/movies');
 
       return;
     }
