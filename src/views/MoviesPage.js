@@ -23,8 +23,6 @@ const MoviesPage = () => {
   const location = useLocation();
   const nameOrder = new URLSearchParams(location.search).get('query');
 
-  console.log(location);
-
   useEffect(() => {
     if (nameOrder !== null) {
       setStatus(Status.PENDING);
