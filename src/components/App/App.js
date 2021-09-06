@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Container from '../Container';
 import Navigation from '../Navigation';
@@ -17,6 +17,8 @@ const MovieDetailsPage = lazy(() =>
 );
 
 function App() {
+  const [query, setQuery] = useState(null);
+
   return (
     <Container>
       <Navigation />
@@ -32,7 +34,7 @@ function App() {
           </Route>
 
           <Route exact path="/movies">
-            <MoviesPage />
+            <MoviesPage setQuery={setQuery} query={query} />
           </Route>
 
           <Route>

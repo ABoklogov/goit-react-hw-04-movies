@@ -23,19 +23,7 @@ const MoviesPage = () => {
   const location = useLocation();
   const nameOrder = new URLSearchParams(location.search).get('query');
 
-  const onAddressBarWrite = order => {
-    history.push({
-      ...location,
-      search: `query=${order}`,
-    });
-  };
-
-  // useEffect(() => {
-  //   effect;
-  // }, []);
-
-  // console.log(location);
-  // console.log(nameOrder);
+  console.log(location);
 
   useEffect(() => {
     if (nameOrder !== null) {
@@ -44,16 +32,29 @@ const MoviesPage = () => {
       moviesAPI
         .fatchOnRquestMovies(nameOrder)
         .then(data => {
-          setMovies(data.results);
-          setStatus(Status.RESOLVED);
-          return;
+          if (data.results.length !== 0) {
+            setMovies(data.results);
+            setMovie('');
+            setStatus(Status.RESOLVED);
+
+            return;
+          }
+          return Promise.reject(new Error(`this movie was not found`));
         })
         .catch(error => {
           setError(error);
+          setMovie('');
           setStatus(Status.REJECTED);
         });
     }
   }, [nameOrder]);
+
+  const onAddressBarWrite = order => {
+    history.push({
+      ...location,
+      search: `query=${order}`,
+    });
+  };
 
   const handleMovieChenge = e => {
     const { value } = e.target;
@@ -64,24 +65,9 @@ const MoviesPage = () => {
     e.preventDefault();
     setStatus(Status.PENDING);
 
-    moviesAPI
-      .fatchOnRquestMovies(movie)
-      .then(data => {
-        if (data.results.length !== 0) {
-          setMovies(data.results);
-          setMovie('');
-          onAddressBarWrite(movie);
-          setStatus(Status.RESOLVED);
-
-          return;
-        }
-        return Promise.reject(new Error(`this movie was not found`));
-      })
-      .catch(error => {
-        setError(error);
-        setMovie('');
-        setStatus(Status.REJECTED);
-      });
+    const query = e.target[0].defaultValue;
+    const queryNormalize = query.toLowerCase();
+    onAddressBarWrite(queryNormalize);
   };
 
   return (

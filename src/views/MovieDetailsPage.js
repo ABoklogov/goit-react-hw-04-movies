@@ -37,9 +37,6 @@ const MovieDetailsPage = () => {
       .catch(error => setError(error));
   }, [movieId]);
 
-  // location.search = '123';
-  // console.log(location);
-
   const onGoBack = () => {
     if (location?.state?.from?.pathname === `/movies/${movieId}`) {
       history.push('/movies');

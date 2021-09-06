@@ -5,7 +5,7 @@ const MoviesFormSubmit = ({ submit, handleChenge, movie }) => {
   return (
     <form onSubmit={submit} className={s.formMovie}>
       <input
-        type="text"
+        type="input"
         value={movie}
         onChange={handleChenge}
         required
