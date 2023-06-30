@@ -2,7 +2,11 @@ import { useEffect, useState } from 'react';
 import * as moviesAPI from '../services/movies-api';
 import CastList from '../components/CastList';
 
-const Cast = ({ id }) => {
+interface Props {
+  id: string
+};
+
+const Cast = ({ id }: Props) => {
   const [cast, setCast] = useState(null);
 
   useEffect(() => {

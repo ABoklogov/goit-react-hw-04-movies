@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import Movies from '../../interfaces/Movie.interface';
 
-const MoviesList = ({ movies }) => {
+interface Props {
+  movies: Movies[]
+};
+
+const MoviesList = ({ movies }: Props) => {
   const location = useLocation();
 
   return (
@@ -23,7 +27,4 @@ const MoviesList = ({ movies }) => {
   );
 };
 
-MoviesList.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.object),
-};
 export default MoviesList;

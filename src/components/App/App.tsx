@@ -1,24 +1,23 @@
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Container from '../Container';
 import Navigation from '../Navigation';
-import Spiner from '../../components/Spiner';
+import Spiner from '../Spiner';
 
 const HomePage = lazy(() =>
-  import('../../views/HomePage.js' /*webpackChunkName: 'home-page' */),
+  import('../../views/HomePage' /*webpackChunkName: 'home-page' */
+  ),
 );
 const MoviesPage = lazy(() =>
-  import('../../views/MoviesPage.js' /*webpackChunkName: 'movies-page' */),
+  import('../../views/MoviesPage' /*webpackChunkName: 'movies-page' */),
 );
 const MovieDetailsPage = lazy(() =>
   import(
-    '../../views/MovieDetailsPage.js' /*webpackChunkName: 'movie-details-page' */
+    '../../views/MovieDetailsPage' /*webpackChunkName: 'movie-details-page' */
   ),
 );
 
 function App() {
-  const [query, setQuery] = useState(null);
-
   return (
     <Container>
       <Navigation />
@@ -34,7 +33,7 @@ function App() {
           </Route>
 
           <Route exact path="/movies">
-            <MoviesPage setQuery={setQuery} query={query} />
+            <MoviesPage />
           </Route>
 
           <Route>

@@ -2,7 +2,11 @@ import { NavLink, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import s from './AdditionalMovieInfo.module.css';
 
-const AdditionalMovieInfo = ({ url }) => {
+interface Props {
+  url: string;
+};
+
+const AdditionalMovieInfo = ({ url }: Props) => {
   const location = useLocation();
 
   return (

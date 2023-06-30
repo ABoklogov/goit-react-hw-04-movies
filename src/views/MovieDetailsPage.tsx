@@ -14,24 +14,34 @@ import AdditionalMovieInfo from '../components/AdditionalMovieInfo';
 import ErrorMessage from '../components/ErrorMessage';
 import Spiner from '../components/Spiner';
 import Button from '../components/Button';
+import Movie from '../interfaces/Movie.interface';
 
-const Cast = lazy(() => import('./Cast.js' /*webpackChunkName: 'cast' */));
+const Cast = lazy(() => import('./Cast' /*webpackChunkName: 'cast' */));
 const Reviews = lazy(() =>
-  import('./Reviews.js' /*webpackChunkName: 'reviews' */),
+  import('./Reviews' /*webpackChunkName: 'reviews' */),
 );
 
+type TState = {
+  from?: TLocation;
+}
+type TLocation = {
+  pathname?: string;
+  state?: TState;
+  from?: TLocation;
+};
+
 const MovieDetailsPage = () => {
-  const { movieId } = useParams();
+  const { movieId } = useParams<{ movieId: string }>();
   const { url, path } = useRouteMatch();
-  const [movie, setMovie] = useState(null);
+  const [movie, setMovie] = useState<Movie | null>(null);
   const [error, setError] = useState('');
-  const location = useLocation();
+  const location = useLocation<TLocation>();
   const history = useHistory();
 
   useEffect(() => {
     moviesAPI
       .fatchDetailsMovie(movieId)
-      .then(data => {
+      .then((data: Movie | null) => {
         setMovie(data);
       })
       .catch(error => setError(error));
@@ -39,6 +49,7 @@ const MovieDetailsPage = () => {
 
   const onGoBack = () => {
     const backLocation = location?.state?.from;
+
     if (backLocation?.pathname === `/movies/${movieId}`) {
       history.push(backLocation?.state?.from);
       return;
