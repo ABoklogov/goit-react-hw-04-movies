@@ -1,8 +1,12 @@
 import defaultImg from '../../img/defaultImage.jpg';
 import s from './CastList.module.css';
-import PropTypes from 'prop-types';
+import ICast from '../../interfaces/Cast.interface';
 
-const CastList = ({ cast }) => {
+interface Props {
+  cast: ICast[];
+};
+
+const CastList = ({ cast }: Props) => {
   return (
     <ul className={s.castList}>
       {cast.map(({ cast_id, profile_path, original_name, character }) => (
@@ -25,7 +29,4 @@ const CastList = ({ cast }) => {
   );
 };
 
-CastList.propTypes = {
-  cast: PropTypes.arrayOf(PropTypes.object),
-};
 export default CastList;

@@ -1,5 +1,4 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import s from './AdditionalMovieInfo.module.css';
 
 interface Props {
@@ -34,10 +33,6 @@ const AdditionalMovieInfo = ({ url }: Props) => {
       </NavLink>
     </div>
   );
-};
-
-AdditionalMovieInfo.propTypes = {
-  url: PropTypes.string.isRequired,
 };
 
 export default AdditionalMovieInfo;

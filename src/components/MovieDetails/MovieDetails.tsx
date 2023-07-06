@@ -1,8 +1,12 @@
 import noImage from '../../img/noImage.jpeg';
 import s from './MovieDetails.module.css';
-import PropTypes from 'prop-types';
+import IMovieDetails from '../../interfaces/MovieDetails.interface';
 
-const MovieDetails = ({ movie }) => {
+interface Props {
+  movie: IMovieDetails;
+};
+
+const MovieDetails = ({ movie }: Props) => {
   return (
     <div className={s.boxDetailsMovie}>
       <img
@@ -31,7 +35,4 @@ const MovieDetails = ({ movie }) => {
   );
 };
 
-MovieDetails.protoType = {
-  movie: PropTypes.arrayOf(PropTypes.object),
-};
 export default MovieDetails;

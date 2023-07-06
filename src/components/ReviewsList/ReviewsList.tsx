@@ -1,7 +1,11 @@
 import s from './ReviewsList.module.css';
-import PropTypes from 'prop-types';
+import IReviews from '../../interfaces/Reviews.interface';
 
-const ReviewsList = ({ reviews }) => {
+interface Props {
+  reviews: IReviews;
+}
+
+const ReviewsList = ({ reviews }: Props) => {
   return (
     <>
       {reviews.results.length === 0 ? (
@@ -21,7 +25,4 @@ const ReviewsList = ({ reviews }) => {
   );
 };
 
-ReviewsList.propTypes = {
-  reviews: PropTypes.object,
-};
 export default ReviewsList;

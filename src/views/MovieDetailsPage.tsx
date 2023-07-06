@@ -14,26 +14,24 @@ import AdditionalMovieInfo from '../components/AdditionalMovieInfo';
 import ErrorMessage from '../components/ErrorMessage';
 import Spiner from '../components/Spiner';
 import Button from '../components/Button';
-import Movie from '../interfaces/Movie.interface';
+import IMovieDetails from '../interfaces/MovieDetails.interface';
 
 const Cast = lazy(() => import('./Cast' /*webpackChunkName: 'cast' */));
 const Reviews = lazy(() =>
   import('./Reviews' /*webpackChunkName: 'reviews' */),
 );
 
-type TState = {
-  from?: TLocation;
-}
 type TLocation = {
-  pathname?: string;
-  state?: TState;
-  from?: TLocation;
+  from?: {
+    state?: any;
+    pathname: string;
+  };
 };
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams<{ movieId: string }>();
   const { url, path } = useRouteMatch();
-  const [movie, setMovie] = useState<Movie | null>(null);
+  const [movie, setMovie] = useState<IMovieDetails | null>(null);
   const [error, setError] = useState('');
   const location = useLocation<TLocation>();
   const history = useHistory();
@@ -41,7 +39,7 @@ const MovieDetailsPage = () => {
   useEffect(() => {
     moviesAPI
       .fatchDetailsMovie(movieId)
-      .then((data: Movie | null) => {
+      .then((data: IMovieDetails | null) => {
         setMovie(data);
       })
       .catch(error => setError(error));
@@ -53,7 +51,7 @@ const MovieDetailsPage = () => {
     if (backLocation?.pathname === `/movies/${movieId}`) {
       history.push(backLocation?.state?.from);
       return;
-    }
+    };
 
     history.push(backLocation ?? '/');
   };

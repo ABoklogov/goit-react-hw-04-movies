@@ -1,7 +1,10 @@
-import PropTypes from 'prop-types';
 import s from './Button.module.css';
 
-const Button = ({ onGoBack }) => {
+interface Props {
+  onGoBack: () => void;
+};
+
+const Button = ({ onGoBack }: Props) => {
   return (
     <button type="button" className={s.Button} onClick={onGoBack}>
       Go back
@@ -9,7 +12,4 @@ const Button = ({ onGoBack }) => {
   );
 };
 
-Button.propTypes = {
-  onGoBack: PropTypes.func.isRequired,
-};
 export default Button;

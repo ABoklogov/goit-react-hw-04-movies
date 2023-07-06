@@ -1,7 +1,13 @@
+import { FormEvent, ChangeEvent } from 'react';
 import s from './MoviesFormSubmit.module.css';
-import PropTypes from 'prop-types';
 
-const MoviesFormSubmit = ({ submit, handleChenge, movie }) => {
+interface Props {
+  submit: (e: FormEvent<HTMLFormElement>) => void;
+  handleChenge: (e: ChangeEvent<HTMLInputElement>) => void;
+  movie: string;
+}
+
+const MoviesFormSubmit = ({ submit, handleChenge, movie }: Props) => {
   return (
     <form onSubmit={submit} className={s.formMovie}>
       <input
@@ -17,9 +23,4 @@ const MoviesFormSubmit = ({ submit, handleChenge, movie }) => {
   );
 };
 
-MoviesFormSubmit.propTypes = {
-  submit: PropTypes.func.isRequired,
-  handleChenge: PropTypes.func.isRequired,
-  movie: PropTypes.string,
-};
 export default MoviesFormSubmit;

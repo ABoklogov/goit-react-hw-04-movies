@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import Movies from '../../interfaces/Movie.interface';
+import Movie from '../../interfaces/Movie.interface';
 
 interface Props {
-  movies: Movies[]
+  movies: Movie[]
 };
 
 const MoviesList = ({ movies }: Props) => {

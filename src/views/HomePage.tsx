@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import * as moviesAPI from '../services/movies-api';
 import MoviesList from '../components/MoviesList';
 import DaraMovies from '../interfaces/DataMovies.interface';
-import Movies from '../interfaces/Movie.interface';
+import Movie from '../interfaces/Movie.interface';
 
 const HomePage = () => {
-  const [movies, setMovies] = useState<Movies[] | null>(null);
+  const [movies, setMovies] = useState<Movie[] | null>(null);
 
   useEffect(() => {
     moviesAPI.fatchPopularMovies().then((data: DaraMovies) => {
